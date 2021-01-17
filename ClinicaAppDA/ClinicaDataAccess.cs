@@ -2,7 +2,8 @@
 
 namespace ClinicaAppDA
 {
-    public class Class1
+    public class ClinicaDataAccess
     {
+        
     }
 }

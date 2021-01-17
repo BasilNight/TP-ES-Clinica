@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppBO", "ClinicaAppB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppBR", "ClinicaAppBR\ClinicaAppBR.csproj", "{811E951C-F137-4101-9DB0-C4E24666A4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppDA", "ClinicaAppDA\ClinicaAppDA.csproj", "{2975A627-AB60-4D8D-84FD-2BDDC9A4E121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppDA", "ClinicaAppDA\ClinicaAppDA.csproj", "{413E90AC-8A05-4C74-BA08-D34460C9AEC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{811E951C-F137-4101-9DB0-C4E24666A4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{811E951C-F137-4101-9DB0-C4E24666A4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{811E951C-F137-4101-9DB0-C4E24666A4E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2975A627-AB60-4D8D-84FD-2BDDC9A4E121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2975A627-AB60-4D8D-84FD-2BDDC9A4E121}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2975A627-AB60-4D8D-84FD-2BDDC9A4E121}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2975A627-AB60-4D8D-84FD-2BDDC9A4E121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413E90AC-8A05-4C74-BA08-D34460C9AEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413E90AC-8A05-4C74-BA08-D34460C9AEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413E90AC-8A05-4C74-BA08-D34460C9AEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413E90AC-8A05-4C74-BA08-D34460C9AEC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
