@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppFrontEnd", "ClinicaAppFrontEnd\ClinicaAppFrontEnd.csproj", "{0955DEC2-1A12-482E-ADDE-2229DC731AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppBO", "ClinicaAppBO\ClinicaAppBO.csproj", "{B5C749B8-3DB2-4D42-888F-AD0F977E78C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicaAppBO", "ClinicaAppBO\ClinicaAppBO.csproj", "{B5C749B8-3DB2-4D42-888F-AD0F977E78C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppBR", "ClinicaAppBR\ClinicaAppBR.csproj", "{811E951C-F137-4101-9DB0-C4E24666A4E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicaAppBR", "ClinicaAppBR\ClinicaAppBR.csproj", "{811E951C-F137-4101-9DB0-C4E24666A4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicaAppDA", "ClinicaAppDA\ClinicaAppDA.csproj", "{413E90AC-8A05-4C74-BA08-D34460C9AEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicaAppDA", "ClinicaAppDA\ClinicaAppDA.csproj", "{413E90AC-8A05-4C74-BA08-D34460C9AEC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
