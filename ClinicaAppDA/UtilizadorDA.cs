@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using Newtonsoft;
 
+
 namespace ClinicaAppDA
 {
     public class UtilizadorDA
@@ -17,7 +18,7 @@ namespace ClinicaAppDA
 
         //get, insere, delete, bla bla
 
-
+        
 
 
         #endregion
