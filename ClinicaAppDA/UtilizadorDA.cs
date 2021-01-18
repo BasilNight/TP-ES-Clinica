@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using ClinicaAppBO;
 using Newtonsoft;
 
 
@@ -17,7 +18,11 @@ namespace ClinicaAppDA
         #region Métodos
 
         //get, insere, delete, bla bla
-
+        
+        public bool InsereUtilizador(Utilizador novoUtilizador)
+        {
+            
+        }
         
 
 
