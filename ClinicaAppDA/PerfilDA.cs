@@ -13,5 +13,7 @@ namespace ClinicaAppDA
         private SqlConnection connection;
         private SqlCommand command;
         #endregion
+
+
     }
 }

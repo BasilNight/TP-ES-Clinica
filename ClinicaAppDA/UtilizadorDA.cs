@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
 using ClinicaAppBO;
-using Newtonsoft;
+using System.Data;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 
 namespace ClinicaAppDA
@@ -18,13 +20,189 @@ namespace ClinicaAppDA
         #region Métodos
 
         //get, insere, delete, bla bla
-        
+
+        /// <summary>
+        /// Metodo que insere um novo utilizador na base de dados
+        /// </summary>
+        /// <param name="novoUtilizador"></param>
+        /// <returns></returns>
         public bool InsereUtilizador(Utilizador novoUtilizador)
         {
-            
-        }
-        
 
+            connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+
+            }
+            catch
+            {
+                //Conexao falhou
+                connection.Close();
+                return false;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+
+                //Verificar se a pessoa ja existe
+                if (ExisteUtilizador(novoUtilizador.Username) == false)
+                {
+                    //Construçao da query...             
+                    string comando;
+
+                    comando = ""; // FAZER A QUERY
+
+                    SqlCommand cmdins = new SqlCommand(comando, connection);
+
+                    cmdins.Parameters.AddWithValue(); // COMPLETAR COM PARAMETROS CORRETOS
+                    cmdins.Parameters.AddWithValue();
+                    cmdins.Parameters.AddWithValue();
+                    cmdins.Parameters.AddWithValue();
+
+
+                    //Executa a query
+                    int res = cmdins.ExecuteNonQuery();
+                    if (res > 0)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else return false;
+
+        }
+
+        /// <summary>
+        /// Metodo que verifica a existencia de um utilizador na base de dados
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public bool ExisteUtilizador(string username)
+        {
+            connection = new SqlConnection(connectionString);
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return false;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                string comando = ""; // FAZER QUERY PARA ESTE METODO!
+
+                SqlCommand cmd = new SqlCommand(comando, connection);
+
+                cmd.Parameters.AddWithValue("", username); // TROCAR PARAMETROS
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataTable);
+
+                if (dataTable.Rows.Count == 1)
+                {
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+
+        /// <summary>
+        /// Metodo que devolve uma lista de objetos tipo Utilizador armazenados na base de dados
+        /// </summary>
+        /// <returns></returns>
+        public List<Utilizador> GetAllUtilizadores()
+        {
+            SqlDataReader dataReader;
+            List<Utilizador> listaUtilizadores = new List<Utilizador>();
+            DataSet ds = new DataSet();
+            connection = new SqlConnection(connectionString);
+            Utilizador utilizador;
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+
+                //Construçao da query
+                SqlCommand cmdins = new SqlCommand();
+                string comando;
+                cmdins.Connection = connection;
+
+                comando = "SELECT * FROM pessoa";
+                cmdins.CommandText = comando;
+
+                dataReader = cmdins.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    utilizador = new Utilizador();
+
+                    utilizador.ID = int.Parse(dataReader.GetValue(0).ToString());
+                    utilizador.Username = dataReader.GetValue(1).ToString();
+                    utilizador.Email = dataReader.GetValue(2).ToString();
+                    utilizador.Senha = dataReader.GetValue(3).ToString(); // Se calhar temos de modificar isto para por em codigo hash ou o crlh que a stora disse nao tenho a certeza.
+                    utilizador.DataNasc = DateTime.Parse(dataReader.GetValue(4).ToString()); // Formato capaz de estar errado
+                    utilizador.Nif = int.Parse(dataReader.GetValue(5).ToString());
+                    utilizador.IdPerfil = int.Parse(dataReader.GetValue(6).ToString());
+
+                    listaUtilizadores.Add(utilizador);
+                }
+
+                connection.Close();
+                return listaUtilizadores;
+            }
+            else return null;
+
+        }
+
+        /// <summary>
+        /// Metodo que atualiza as informaçoes de um utilizador existente na base de dados (INCOMPLETO)
+        /// </summary>
+        /// <param name="utilizador"></param>
+        /// <returns></returns>
+        public bool UpdateUtilizador(Utilizador utilizador)
+        {
+            connection = new SqlConnection(connectionString);
+            command = new SqlCommand();
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return false;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                //Verificar se a pessoa ja existe
+                if (ExisteUtilizador(utilizador.Username) == false)
+                {
+
+
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
 
         #endregion
 

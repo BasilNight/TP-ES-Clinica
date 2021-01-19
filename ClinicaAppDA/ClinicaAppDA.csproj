@@ -11,12 +11,4 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClinicaAppBO\ClinicaAppBO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ClinicaAppBO">
-      <HintPath>..\ClinicaAppBO\bin\Debug\netcoreapp3.1\ClinicaAppBO.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-</Project>
+  </ItemGroup></Project>
