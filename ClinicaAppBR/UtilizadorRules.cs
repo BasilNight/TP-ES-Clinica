@@ -17,11 +17,11 @@ namespace ClinicaAppBR
             else return false;
         }
 
-        public Utilizador Login(string username, string senha)
+        public Utilizador Login(string email, string senha)
         {
             UtilizadorDA utilizadorMetodos = new UtilizadorDA();
             Utilizador utilizador;
-            utilizador = utilizadorMetodos.Login(username, senha);
+            utilizador = utilizadorMetodos.Login(email, senha);
             if (utilizador != null)
             {
                 return utilizador;

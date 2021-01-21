@@ -17,11 +17,11 @@
                             </tr>
                             <tr>
                                 <td align="right" style="height: 121px">
-                                    <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Font-Size="Medium" Height="16px">User Name:</asp:Label>
+                                    <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Font-Size="Medium" Height="16px">Email:</asp:Label>
                                 </td>
                                 <td style="height: 121px">
                                     <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Height="24px" Width="184px" OnTextChanged="UserName_TextChanged"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="Email is required." ToolTip="Email is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -34,13 +34,21 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" colspan="2" style="color:Red;">
+                                <td align="center" colspan="2" style="color:Red; height: 54px;">
                                     <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="center" colspan="2">
                                     <asp:Button ID="LoginButton" runat="server" BackColor="#FFFBFF" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CommandName="Login" Font-Names="Verdana" Font-Size="Medium" ForeColor="#284775" Text="Log In" ValidationGroup="Login1" Height="29px" Width="121px" OnClick="LoginButton_Click" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/RegisterForm.aspx">Ainda não tem uma conta? Registe</asp:HyperLink>
+
                                 </td>
                             </tr>
                         </table>

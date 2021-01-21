@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClinicaAppBR;
+using ClinicaAppBO;
 
 namespace ClinicaAppFrontEnd
 {
@@ -20,6 +22,40 @@ namespace ClinicaAppFrontEnd
         }
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            UtilizadorRules utilizadorRules = new UtilizadorRules();
+            Utilizador novoUtilizador = new Utilizador();
+
+            novoUtilizador.Username = TextBox2.Text;
+            novoUtilizador.Senha = TextBox3.Text;
+            novoUtilizador.Email = TextBox5.Text;
+            novoUtilizador.DataNasc = DateTime.Parse(date.Text);
+            novoUtilizador.Nif = int.Parse(TextBox4.Text);
+            novoUtilizador.IdPerfil = 1;
+
+            if(utilizadorRules.RegistarUtilizador(novoUtilizador) == true)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
+        }
+
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

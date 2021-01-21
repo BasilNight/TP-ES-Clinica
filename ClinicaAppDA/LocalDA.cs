@@ -21,7 +21,7 @@ namespace ClinicaAppDA
         /// Metodo que retorna uma lista de locais
         /// </summary>
         /// <returns></returns>
-        public List<Local> GetLocais()
+        /*public List<Local> GetLocais()
         {
             SqlDataReader dataReader;
             connection = new SqlConnection(connectionString);
@@ -48,7 +48,7 @@ namespace ClinicaAppDA
                 cmdins.CommandText = comando;
             }
         }
-
+        */
 
         #endregion
     }

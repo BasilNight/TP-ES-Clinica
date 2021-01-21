@@ -240,8 +240,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClinicaAppBO\ClinicaAppBO.csproj">
+      <Project>{46486235-4ccf-4a17-87da-d4da650152b7}</Project>
+      <Name>ClinicaAppBO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClinicaAppBR\ClinicaAppBR.csproj">
-      <Project>{6624c443-9435-41d3-a44d-18e717328a8d}</Project>
+      <Project>{7d0ade0d-1aa4-4fac-b870-93be236b58ca}</Project>
       <Name>ClinicaAppBR</Name>
     </ProjectReference>
   </ItemGroup>

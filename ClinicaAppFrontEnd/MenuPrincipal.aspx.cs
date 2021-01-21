@@ -11,7 +11,8 @@ namespace ClinicaAppFrontEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            Label1.Text = Session["Value"].ToString();
         }
     }
 }

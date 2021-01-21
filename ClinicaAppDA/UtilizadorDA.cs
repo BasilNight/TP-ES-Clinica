@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using ClinicaAppBO;
 using System.Data;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+
 
 
 namespace ClinicaAppDA
@@ -51,17 +51,16 @@ namespace ClinicaAppDA
                     //Construçao da query...             
                     string comando;
 
-                    comando = "insert into Consulta (Data, Descricao, Estado, ID_Local, ID_Tratamento) values (@data, @desc, @estado, @idlocal, @idtrat);";
+                    comando = "insert into Utilizador (Username, [E-mail], Senha, Data_Nascimento, NIF, ID_Perfil) values(@username, @email, @senha, @dataNasc, @NIF, @idPerfil);";
 
                     SqlCommand cmdins = new SqlCommand(comando, connection);
 
-                    cmdins.Parameters.AddWithValue("@data", novoUtilizador.Username);
-                    cmdins.Parameters.AddWithValue("@desc", novoUtilizador.Email);
-                    cmdins.Parameters.AddWithValue("@estado", novoUtilizador.Senha);
-                    cmdins.Parameters.AddWithValue("@idlocal", novoUtilizador.DataNasc);
-                    cmdins.Parameters.AddWithValue("@idtrat", novoUtilizador.DataNasc);
-
-
+                    cmdins.Parameters.AddWithValue("@username", novoUtilizador.Username);
+                    cmdins.Parameters.AddWithValue("@email", novoUtilizador.Email);
+                    cmdins.Parameters.AddWithValue("@senha", novoUtilizador.Senha);
+                    cmdins.Parameters.AddWithValue("@dataNasc", novoUtilizador.DataNasc);
+                    cmdins.Parameters.AddWithValue("@NIF", novoUtilizador.Nif);
+                    cmdins.Parameters.AddWithValue("@idPerfil", novoUtilizador.IdPerfil);
 
                     //Executa a query
                     int res = cmdins.ExecuteNonQuery();
@@ -99,11 +98,11 @@ namespace ClinicaAppDA
             }
             if (connection.State.ToString() == "Open")
             {
-                string comando = ""; // FAZER QUERY PARA ESTE METODO!
+                string comando = "select * from Utilizador where Utilizador.[E-mail] = @email;"; 
 
                 SqlCommand cmd = new SqlCommand(comando, connection);
 
-                cmd.Parameters.AddWithValue("", email); // TROCAR PARAMETROS
+                cmd.Parameters.AddWithValue("@email", email); 
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dataTable);
@@ -343,7 +342,7 @@ namespace ClinicaAppDA
             }
             if (connection.State.ToString() == "Open")
             {
-                string comando = "select ID_Utilizador, Username, [E-mail], Senha, Data_Nascimento, NIF, ID_Perfil from Utilizador where [E-mail] = @email, Senha = @senha";
+                string comando = "select ID_Utilizador, Username, [E-mail], Senha, Data_Nascimento, NIF, ID_Perfil from Utilizador where [E-mail] = @email and Senha = @senha";
 
                 SqlCommand cmd = new SqlCommand(comando, connection);
 
@@ -358,7 +357,7 @@ namespace ClinicaAppDA
                 {
                     utilizador.ID = int.Parse(dataTable.Rows[0]["ID_Utilizador"].ToString());
                     utilizador.Username = dataTable.Rows[0]["Username"].ToString();
-                    utilizador.Email = dataTable.Rows[0]["[E-mail]"].ToString();
+                    utilizador.Email = dataTable.Rows[0]["E-mail"].ToString();
                     utilizador.Senha = dataTable.Rows[0]["Senha"].ToString();
                     utilizador.DataNasc = DateTime.Parse(dataTable.Rows[0]["Data_Nascimento"].ToString());
                     utilizador.Nif = int.Parse(dataTable.Rows[0]["NIF"].ToString());

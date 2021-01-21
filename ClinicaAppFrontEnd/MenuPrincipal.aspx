@@ -8,6 +8,7 @@
 </head> Menu Principal 
 <body>
     <form id="form1" runat="server">
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <div>
             <asp:Button ID="Button1" runat="server" Height="49px" Text="Marcar uma Consulta" Width="175px" />
         </div>
