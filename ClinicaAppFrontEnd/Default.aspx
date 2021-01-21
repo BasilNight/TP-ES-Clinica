@@ -20,7 +20,7 @@
                                     <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Font-Size="Medium" Height="16px">User Name:</asp:Label>
                                 </td>
                                 <td style="height: 121px">
-                                    <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Height="24px" Width="184px"></asp:TextBox>
+                                    <asp:TextBox ID="UserName" runat="server" Font-Size="0.8em" Height="24px" Width="184px" OnTextChanged="UserName_TextChanged"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                 </td>
                             </tr>

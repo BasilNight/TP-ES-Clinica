@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ClinicaAppDA
 {
-    class ConsultaDA
+    public class ConsultaDA
     {
         #region Atributos
         //Connection String para a nossa base de dados
@@ -28,7 +28,7 @@ namespace ClinicaAppDA
         {
 
             connection = new SqlConnection(connectionString);
-
+            
             try
             {
                 connection.Open();
@@ -70,6 +70,57 @@ namespace ClinicaAppDA
         }
 
         /// <summary>
+        /// Metodo que devolve uma lista de utilizadores que vao participar na consulta
+        /// </summary>
+        /// <param name="ConsultaId"></param>
+        /// <returns></returns>
+        public List<Utilizador> GetUtilizadoresInConsulta(int ConsultaId)
+        {
+            int utilizadorId;
+            UtilizadorDA utilizadorDA = new UtilizadorDA();
+            DataTable dataTable = new DataTable();
+            connection = new SqlConnection(connectionString);
+            Utilizador utilizador;
+            List<Utilizador> listaUtilizadores = new List<Utilizador>();
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                //Construçao da query
+                SqlCommand cmdins = new SqlCommand();
+                string comando;
+                cmdins.Connection = connection;
+
+                comando = "select * from Consulta_Utilizador";
+                cmdins.CommandText = comando;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdins.CommandText, connection);
+                da.Fill(dataTable);
+
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    if (dataRow["ConsultaID_Consulta"].ToString() == ConsultaId.ToString())
+                    {
+                        utilizadorId = int.Parse(dataRow["UtilizadorID_Utilizador"].ToString());
+                        utilizador = utilizadorDA.GetUtilizador(utilizadorId);
+                        listaUtilizadores.Add(utilizador);
+                    }
+                }
+                return listaUtilizadores;
+            }
+            else return null;
+            
+        }
+
+        /// <summary>
         /// Metodo que devolve uma lista de todas as consultas registadas na base de dados
         /// </summary>
         /// <returns></returns>
@@ -98,7 +149,7 @@ namespace ClinicaAppDA
                 string comando;
                 cmdins.Connection = connection;
 
-                comando = "SELECT * FROM Utilizador";
+                comando = "SELECT * FROM Consulta";
                 cmdins.CommandText = comando;
 
                 dataReader = cmdins.ExecuteReader();
@@ -113,6 +164,7 @@ namespace ClinicaAppDA
                     consulta.Estado = int.Parse(dataReader.GetValue(3).ToString());
                     consulta.IdLocal = int.Parse(dataReader.GetValue(5).ToString());
                     consulta.IdTratamento = int.Parse(dataReader.GetValue(6).ToString());
+                    consulta.Utilizadores = GetUtilizadoresInConsulta(consulta.ID); // Teste, talvez nao final
 
                     listaConsultas.Add(consulta);
                 }

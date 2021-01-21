@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClinicaAppBO\ClinicaAppBO.csproj" />
+    <ProjectReference Include="..\ClinicaAppDA\ClinicaAppDA.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -51,11 +51,11 @@ namespace ClinicaAppDA
                     //Construçao da query...             
                     string comando;
 
-                    comando = "insert into Consulta (Data, Descricao, Estado, ID_Local, ID_Tratamento) values (@data, @desc, @estado, @idlocal, @idtrat);"; 
+                    comando = "insert into Consulta (Data, Descricao, Estado, ID_Local, ID_Tratamento) values (@data, @desc, @estado, @idlocal, @idtrat);";
 
                     SqlCommand cmdins = new SqlCommand(comando, connection);
 
-                    cmdins.Parameters.AddWithValue("@data", novoUtilizador.Username); 
+                    cmdins.Parameters.AddWithValue("@data", novoUtilizador.Username);
                     cmdins.Parameters.AddWithValue("@desc", novoUtilizador.Email);
                     cmdins.Parameters.AddWithValue("@estado", novoUtilizador.Senha);
                     cmdins.Parameters.AddWithValue("@idlocal", novoUtilizador.DataNasc);
@@ -116,6 +116,58 @@ namespace ClinicaAppDA
             }
             else return false;
         }
+
+        /// <summary>
+        /// Metodo que devolve informaçoes de um utilizador usando o seu ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Utilizador GetUtilizador(int id)
+        {
+            DataTable dataTable = new DataTable();
+            Utilizador utilizador = new Utilizador();
+            connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                string comando = "select ID_Utilizador, Username, [E-mail], Senha, Data_Nascimento, NIF, ID_Perfil from Utilizador where ID_Utilizador = @Id";
+
+                SqlCommand cmd = new SqlCommand(comando, connection);
+
+                cmd.Parameters.AddWithValue("@Id", id);
+                
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataTable);
+
+                // Verifica a existencia de um utilizador com estas credenciais
+                if (dataTable.Rows.Count != 0)
+                {
+                    utilizador.ID = int.Parse(dataTable.Rows[0]["ID_Utilizador"].ToString());
+                    utilizador.Username = dataTable.Rows[0]["Username"].ToString();
+                    utilizador.Email = dataTable.Rows[0]["[E-mail]"].ToString();
+                    utilizador.Senha = dataTable.Rows[0]["Senha"].ToString();
+                    utilizador.DataNasc = DateTime.Parse(dataTable.Rows[0]["Data_Nascimento"].ToString());
+                    utilizador.Nif = int.Parse(dataTable.Rows[0]["NIF"].ToString());
+                    utilizador.IdPerfil = int.Parse(dataTable.Rows[0]["ID_Perfil"].ToString());
+
+                    return utilizador;
+                }
+                else return null;
+
+            }
+            else return null;
+        }
+
 
         /// <summary>
         /// Metodo que devolve uma lista de objetos tipo Utilizador armazenados na base de dados
@@ -266,7 +318,59 @@ namespace ClinicaAppDA
             }
             else return false;
         }
-        #endregion
 
+        /// <summary>
+        /// Metodo que 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="senha"></param>
+        /// <returns></returns>
+        public Utilizador Login(string email, string senha)
+        {
+
+            DataTable dataTable = new DataTable();
+            Utilizador utilizador = new Utilizador();
+            connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                string comando = "select ID_Utilizador, Username, [E-mail], Senha, Data_Nascimento, NIF, ID_Perfil from Utilizador where [E-mail] = @email, Senha = @senha";
+
+                SqlCommand cmd = new SqlCommand(comando, connection);
+
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@senha", senha);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataTable);
+
+                // Verifica a existencia de um utilizador com estas credenciais
+                if (dataTable.Rows.Count != 0)
+                {
+                    utilizador.ID = int.Parse(dataTable.Rows[0]["ID_Utilizador"].ToString());
+                    utilizador.Username = dataTable.Rows[0]["Username"].ToString();
+                    utilizador.Email = dataTable.Rows[0]["[E-mail]"].ToString();
+                    utilizador.Senha = dataTable.Rows[0]["Senha"].ToString();
+                    utilizador.DataNasc = DateTime.Parse(dataTable.Rows[0]["Data_Nascimento"].ToString());
+                    utilizador.Nif = int.Parse(dataTable.Rows[0]["NIF"].ToString());
+                    utilizador.IdPerfil = int.Parse(dataTable.Rows[0]["ID_Perfil"].ToString());
+
+                    return utilizador;
+                }
+                else return null;
+
+            }
+            else return null;
+        }
+#endregion
     }
 }
