@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ClinicaAppFrontEnd
 {
-    public partial class _Default : Page
+    public partial class RegisterForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,19 +19,9 @@ namespace ClinicaAppFrontEnd
 
         }
 
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Password_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LoginButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("RegisterForm.aspx");
         }
     }
 }
