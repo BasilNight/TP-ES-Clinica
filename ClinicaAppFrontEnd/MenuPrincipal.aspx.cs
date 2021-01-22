@@ -4,15 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClinicaAppBR;
+using ClinicaAppBO;
 
 namespace ClinicaAppFrontEnd
 {
     public partial class MenuPrincipal : System.Web.UI.Page
     {
+        Utilizador utilizadorExistente;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            Label1.Text = Session["Value"].ToString();
+            UtilizadorRules utilizadorRules = new UtilizadorRules();
+            Utilizador utilizadorExistente = new Utilizador();
+            string email = Session["email"].ToString();
+            string senha = Session["password"].ToString();
+
+            if (email != null || senha != null)
+            {
+                this.utilizadorExistente = utilizadorRules.Login(email, senha);
+                Label2.Text = "Bem Vindo " + utilizadorExistente.Username;
+
+            }
+            //Session["Valor"].ToString();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            UtilizadorRules utilizadorRules = new UtilizadorRules();
+            string email = utilizadorExistente.Email;
+            string senha = utilizadorExistente.Senha;
+
+            Session["email"] = email;
+            Session["password"] = senha;
+            Server.Transfer("RegistoConsulta.aspx");
+            Response.Redirect("RegistoConsulta.aspx");
         }
     }
 }

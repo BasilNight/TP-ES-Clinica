@@ -41,7 +41,7 @@ namespace ClinicaAppFrontEnd
             novoUtilizador.Email = TextBox5.Text;
             novoUtilizador.DataNasc = DateTime.Parse(date.Text);
             novoUtilizador.Nif = int.Parse(TextBox4.Text);
-            novoUtilizador.IdPerfil = 1;
+            novoUtilizador.IdPerfil = 2;
 
             if(utilizadorRules.RegistarUtilizador(novoUtilizador) == true)
             {

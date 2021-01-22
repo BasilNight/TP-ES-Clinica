@@ -6,7 +6,7 @@ using ClinicaAppBO;
 
 namespace ClinicaAppDA
 {
-    class LocalDA
+    public class LocalDA
     {
         #region Atributos
         //Connection String para a nossa base de dados
@@ -21,10 +21,12 @@ namespace ClinicaAppDA
         /// Metodo que retorna uma lista de locais
         /// </summary>
         /// <returns></returns>
-        /*public List<Local> GetLocais()
+        public List<Local> GetLocais()
         {
             SqlDataReader dataReader;
             connection = new SqlConnection(connectionString);
+            Local local;
+            List<Local> listaLocal = new List<Local>();
 
             try
             {
@@ -46,9 +48,26 @@ namespace ClinicaAppDA
 
                 comando = "SELECT * FROM Local";
                 cmdins.CommandText = comando;
+
+                dataReader = cmdins.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    local = new Local();
+
+                    local.ID = int.Parse(dataReader.GetValue(0).ToString());
+                    local.Nome = dataReader.GetValue(1).ToString();
+
+                    listaLocal.Add(local);
+                }
+
+                return listaLocal;
             }
+            else return null;
         }
-        */
+
+        
+        
 
         #endregion
     }

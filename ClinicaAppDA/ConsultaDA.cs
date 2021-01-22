@@ -176,6 +176,47 @@ namespace ClinicaAppDA
         }
 
         /// <summary>
+        /// Metodo que devolve todas as consultas disponiveis
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public List<Consulta> GetAllConsultasDisp(DateTime date)
+        {
+            SqlDataReader dataReader;
+            List<Consulta> listaConsultas = new List<Consulta>();
+            List<Consulta> listaConsultasDisp = new List<Consulta>();
+            DataSet ds = new DataSet();
+            connection = new SqlConnection(connectionString);
+            Consulta consulta;
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                listaConsultas = GetAllConsultas();
+
+                foreach (Consulta consulta1 in listaConsultas)
+                {
+                    if (date.CompareTo(consulta1.Data) != 0 && date <= date.AddHours(2))
+                    {
+                        listaConsultasDisp.Add(consulta1);    
+                    }
+                }
+                return listaConsultasDisp;
+            }
+            else return null;
+        }
+
+
+
+        /// <summary>
         /// Metodo que atualiza uma consulta registada na base de dados
         /// </summary>
         /// <param name="consulta"></param>

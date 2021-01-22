@@ -127,6 +127,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="RegisterForm.aspx" />
+    <Content Include="RegistoConsulta.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -203,6 +204,13 @@
     <Compile Include="RegisterForm.aspx.designer.cs">
       <DependentUpon>RegisterForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RegistoConsulta.aspx.cs">
+      <DependentUpon>RegistoConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistoConsulta.aspx.designer.cs">
+      <DependentUpon>RegistoConsulta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +255,10 @@
     <ProjectReference Include="..\ClinicaAppBR\ClinicaAppBR.csproj">
       <Project>{7d0ade0d-1aa4-4fac-b870-93be236b58ca}</Project>
       <Name>ClinicaAppBR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClinicaAppDA\ClinicaAppDA.csproj">
+      <Project>{3e3b5de5-2e9a-4fc2-b7ab-6ba83481b76d}</Project>
+      <Name>ClinicaAppDA</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

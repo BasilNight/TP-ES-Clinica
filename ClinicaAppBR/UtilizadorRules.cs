@@ -29,7 +29,5 @@ namespace ClinicaAppBR
             else return null;
         }
 
-
-
     }
 }
