@@ -67,7 +67,7 @@
                 </asp:Calendar>
                     
                     <br />
-                    <asp:Label ID="Label6" runat="server" ForeColor="Red" Text="Data Selecionada Não é Válida"></asp:Label>
+                    <asp:Label ID="Label6" runat="server" ForeColor="Red" Text="Data Selecionada Não é Válida" Font-Bold="True" Font-Names="Arial" Font-Underline="True"></asp:Label>
                     
                 </td>
 
@@ -76,18 +76,20 @@
                         <tr>
                             <td class="auto-style7">
 
-                                <asp:Label ID="Label2" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Fisioterapeuta desejado: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="auto-style8" Width="169px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                <asp:Label ID="Label3" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Local Disponivel Desejado: "></asp:Label>
+                                <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="true" EnableViewState="true" AppendDataBoundItems="true" Width="169px" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" style="height: 22px">
                                 </asp:DropDownList>
+                                
 
                             </td>
                         </tr>
 
                         <tr>
                             <td class="auto-style16">
+                                
 
-                                <asp:Label ID="Label5" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Tratamento desejado: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList4" runat="server" CssClass="auto-style17" Width="169px">
+                                <asp:Label ID="Label2" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Fisioterapeuta desejado: "></asp:Label>
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="auto-style8" Width="169px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                                 </asp:DropDownList>
 
                             </td>
@@ -95,18 +97,18 @@
                         
                         <tr>
                             <td class="auto-style10">
-
-                                <asp:Label ID="Label3" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha a Hora Disponivel Desejada: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList2" runat="server" Width="169px" CssClass="auto-style9">
+                                <asp:Label ID="Label7" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha a Hora Disponivel Desejada: "></asp:Label>
+                                <asp:DropDownList ID="DropDownList5" runat="server" Width="169px" CssClass="auto-style9">
                                 </asp:DropDownList>
+                                
 
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style11">
 
-                                <asp:Label ID="Label4" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Local Disponivel Desejado: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList3" runat="server" Width="169px" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
+                                <asp:Label ID="Label5" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Tratamento desejado: "></asp:Label>
+                                <asp:DropDownList ID="DropDownList4" runat="server" CssClass="auto-style17" Width="169px">
                                 </asp:DropDownList>
 
                             </td>
@@ -120,7 +122,7 @@
 
             <br />
             <asp:Button ID="Button1" runat="server" CssClass="auto-style14" Height="34px" Text="Voltar para Menu Principal" Width="168px" />
-            <asp:Button ID="Button2" runat="server" CssClass="auto-style15" Height="34px" Text="Confirmar" Width="168px" />
+            <asp:Button ID="Button2" runat="server" CssClass="auto-style15" Height="34px" Text="Confirmar" Width="168px" OnClick="Button2_Click" />
 
         </div>
     </form>

@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using ClinicaAppBO;
 using System.Data;
+using System.Linq;
 
 
 namespace ClinicaAppDA
@@ -20,12 +21,15 @@ namespace ClinicaAppDA
         #region Métodos
 
         /// <summary>
-        /// Metodo que insere uma consulta nova na base de dados
+        /// Metodo que insere uma consulta nova na base de dados: Funciona
         /// </summary>
         /// <param name="novaConsulta"></param>
         /// <returns></returns>
-        public bool InsereConsulta(Consulta novaConsulta)
+        public bool InsereConsulta(Consulta novaConsulta, List<Utilizador> utilizadores)
         {
+            #region para testes 
+
+            #endregion
 
             connection = new SqlConnection(connectionString);
             
@@ -46,21 +50,35 @@ namespace ClinicaAppDA
                 //Construçao da query...             
                 string comando;
 
-                comando = "insert into Consulta (Data, Descricao, Estado, ID_Local, ID_Tratamento) values (@data, @desc, @estado, @idLocal, @idTrat);";
+                comando = "insert into Consulta (Data, Descricao, Estado, ID_Local, ID_Tratamento) values (@data, @desc, @estado, @idLocal, @idTrat); SELECT SCOPE_IDENTITY()";
 
                 SqlCommand cmdins = new SqlCommand(comando, connection);
 
                 cmdins.Parameters.AddWithValue("@data", novaConsulta.Data);
-                cmdins.Parameters.AddWithValue("@desc", novaConsulta.Descricao);
+                cmdins.Parameters.AddWithValue("@desc", "");
                 cmdins.Parameters.AddWithValue("@estado", novaConsulta.Estado);
                 cmdins.Parameters.AddWithValue("@idLocal", novaConsulta.IdLocal);
                 cmdins.Parameters.AddWithValue("@idTrat", novaConsulta.IdTratamento);
 
 
                 //Executa a query
-                int res = cmdins.ExecuteNonQuery();
-                if (res > 0)
+                int lastId = Convert.ToInt32(cmdins.ExecuteScalar());
+                if (lastId > 0)
                 {
+                    foreach(Utilizador utilizador in utilizadores)
+                    {
+                        string comando2;
+
+                        comando2 = "insert into Consulta_Utilizador (ConsultaID_Consulta, UtilizadorID_Utilizador) values ( @idConsulta, @idUtilizador);";
+                        SqlCommand cmdins2 = new SqlCommand(comando2, connection);
+
+                        cmdins2.Parameters.AddWithValue("@idConsulta", lastId);
+                        cmdins2.Parameters.AddWithValue("@idUtilizador", utilizador.ID);
+
+                        int res2 = cmdins2.ExecuteNonQuery();
+
+
+                    }
                     connection.Close();
                     return true;
                 }
@@ -162,9 +180,9 @@ namespace ClinicaAppDA
                     consulta.Data = DateTime.Parse(dataReader.GetValue(1).ToString());
                     consulta.Descricao = dataReader.GetValue(2).ToString();
                     consulta.Estado = int.Parse(dataReader.GetValue(3).ToString());
-                    consulta.IdLocal = int.Parse(dataReader.GetValue(5).ToString());
-                    consulta.IdTratamento = int.Parse(dataReader.GetValue(6).ToString());
-                    consulta.Utilizadores = GetUtilizadoresInConsulta(consulta.ID); // Teste, talvez nao final
+                    consulta.IdLocal = int.Parse(dataReader.GetValue(4).ToString());
+                    consulta.IdTratamento = int.Parse(dataReader.GetValue(5).ToString());
+                    //consulta.Utilizadores = GetUtilizadoresInConsulta(consulta.ID); // Teste, talvez nao final
 
                     listaConsultas.Add(consulta);
                 }
@@ -176,15 +194,15 @@ namespace ClinicaAppDA
         }
 
         /// <summary>
-        /// Metodo que devolve todas as consultas disponiveis
+        /// Metodo que devolve todas as consultas disponiveis - FUNCIONA kinda
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public List<Consulta> GetAllConsultasDisp(DateTime date)
+        public List<DateTime> GetAllConsultasDisp(DateTime date)
         {
             SqlDataReader dataReader;
+            List<DateTime> horasTodas = new List<DateTime>();
             List<Consulta> listaConsultas = new List<Consulta>();
-            List<Consulta> listaConsultasDisp = new List<Consulta>();
             DataSet ds = new DataSet();
             connection = new SqlConnection(connectionString);
             Consulta consulta;
@@ -200,16 +218,32 @@ namespace ClinicaAppDA
             }
             if (connection.State.ToString() == "Open")
             {
+                
+                const int lastHour = 19;
+
+                DateTime data = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
+
+                while (data.Hour < lastHour)
+                {
+                    horasTodas.Add(data);
+                    data = data.AddHours(1);
+                }
                 listaConsultas = GetAllConsultas();
 
-                foreach (Consulta consulta1 in listaConsultas)
+                // So verifica se as datas sao iguais ainda nao ve locais
+                foreach(DateTime date1 in horasTodas.ToList()) //To list porque senao dava erro
                 {
-                    if (date.CompareTo(consulta1.Data) != 0 && date <= date.AddHours(2))
+                    foreach(Consulta consulta1 in listaConsultas)
                     {
-                        listaConsultasDisp.Add(consulta1);    
+                        int result = DateTime.Compare(date1, consulta1.Data);
+                        if (result == 0)
+                        {
+                            horasTodas.Remove(date1);
+                        }
                     }
                 }
-                return listaConsultasDisp;
+
+                return horasTodas;
             }
             else return null;
         }

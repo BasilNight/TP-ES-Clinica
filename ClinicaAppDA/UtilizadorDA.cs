@@ -153,7 +153,7 @@ namespace ClinicaAppDA
                 {
                     utilizador.ID = int.Parse(dataTable.Rows[0]["ID_Utilizador"].ToString());
                     utilizador.Username = dataTable.Rows[0]["Username"].ToString();
-                    utilizador.Email = dataTable.Rows[0]["[E-mail]"].ToString();
+                    utilizador.Email = dataTable.Rows[0]["E-mail"].ToString();
                     utilizador.Senha = dataTable.Rows[0]["Senha"].ToString();
                     utilizador.DataNasc = DateTime.Parse(dataTable.Rows[0]["Data_Nascimento"].ToString());
                     utilizador.Nif = int.Parse(dataTable.Rows[0]["NIF"].ToString());
@@ -165,6 +165,62 @@ namespace ClinicaAppDA
 
             }
             else return null;
+        }
+
+        /// <summary>
+        /// Metodo que devolve todos os utilizadores com o perfil de fisioterapeuta
+        /// </summary>
+        /// <returns></returns>
+        public List<Utilizador> GetFisioterapeutas()
+        {
+            SqlDataReader dataReader;
+            DataTable dataTable = new DataTable();
+            List<Utilizador> listaFisioterapeuta = new List<Utilizador>();
+            Utilizador utilizador = new Utilizador();
+            connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                string comando = "select * from Utilizador where ID_Perfil = @Id;";
+
+                SqlCommand cmd = new SqlCommand(comando, connection);
+
+                cmd.Parameters.AddWithValue("@Id", 2);
+
+
+                dataReader = cmd.ExecuteReader();
+
+                // Verifica a existencia de um utilizador com estas credenciais
+                while (dataReader.Read())
+                {
+                    utilizador.ID = int.Parse(dataReader.GetValue(0).ToString());
+                    utilizador.Username = dataReader.GetValue(1).ToString();
+                    utilizador.Email = dataReader.GetValue(2).ToString();
+                    utilizador.Senha = dataReader.GetValue(3).ToString();
+                    utilizador.DataNasc = DateTime.Parse(dataReader.GetValue(4).ToString());
+                    utilizador.Nif = int.Parse(dataReader.GetValue(5).ToString());
+                    utilizador.IdPerfil = int.Parse(dataReader.GetValue(6).ToString());
+
+                    listaFisioterapeuta.Add(utilizador);
+
+                    
+                }
+                connection.Close();
+                return listaFisioterapeuta;
+
+            }
+            else return null;
+
+
         }
 
 

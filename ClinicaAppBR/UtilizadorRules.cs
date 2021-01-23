@@ -1,6 +1,7 @@
 ﻿using System;
 using ClinicaAppBO;
 using ClinicaAppDA;
+using System.Collections.Generic;
 
 namespace ClinicaAppBR
 {
@@ -29,5 +30,31 @@ namespace ClinicaAppBR
             else return null;
         }
 
+        public List<Utilizador> GetFisioterapeutas()
+        {
+            UtilizadorDA utilizadorMetodos = new UtilizadorDA();
+            List<Utilizador> listaFisioterapeutas = new List<Utilizador>();
+
+            listaFisioterapeutas = utilizadorMetodos.GetFisioterapeutas();
+
+            if (listaFisioterapeutas != null)
+            {
+                return listaFisioterapeutas;
+            }
+            else return null;
+        }
+
+        public Utilizador GetUtilizador(int id)
+        {
+            UtilizadorDA utilizadorMetodos = new UtilizadorDA();
+            Utilizador utilizador = new Utilizador();
+
+            utilizador = utilizadorMetodos.GetUtilizador(id);
+            if (utilizador != null)
+            {
+                return utilizador;
+            }
+            else return null;
+        }
     }
 }
