@@ -24,11 +24,11 @@ namespace ClinicaAppBR
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public List<DateTime> GetConsultasDisp(DateTime data) // DEPOIS DEFINIR REGRAS
+        public List<DateTime> GetConsultasDisp(DateTime data, int idLocal, int idFisioterapeuta) // DEPOIS DEFINIR REGRAS
         {
             ConsultaDA consultaMetodos = new ConsultaDA();
             List<DateTime> datasDisp = new List<DateTime>();
-            datasDisp = consultaMetodos.GetAllConsultasDisp(data);
+            datasDisp = consultaMetodos.GetAllConsultasDisp(data, idLocal, idFisioterapeuta);
 
             if (datasDisp != null)
             {
@@ -46,6 +46,19 @@ namespace ClinicaAppBR
             if (listaLocal != null)
             {
                 return listaLocal;
+            }
+            else return null;
+        }
+
+        public Local GetLocal(int id)
+        {
+            LocalDA metodosLocal = new LocalDA();
+            Local local = new Local();
+
+            local = metodosLocal.GetLocal(id);
+            if (local != null)
+            {
+                return local;
             }
             else return null;
         }

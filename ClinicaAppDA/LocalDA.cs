@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using ClinicaAppBO;
+using System.Data;
 
 namespace ClinicaAppDA
 {
@@ -66,8 +67,53 @@ namespace ClinicaAppDA
             else return null;
         }
 
-        
-        
+        /// <summary>
+        /// Metodo que retorna um unico local
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Local GetLocal(int id)
+        {
+            DataTable dataTable = new DataTable();
+            Local local = new Local();
+            connection = new SqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+            }
+            catch
+            {
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                string comando = "select ID_Local, Nome from Local where ID_Local = @Id;";
+
+                SqlCommand cmd = new SqlCommand(comando, connection);
+
+                cmd.Parameters.AddWithValue("@Id", id);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataTable);
+
+                // Verifica a existencia de um utilizador com estas credenciais
+                if (dataTable.Rows.Count != 0)
+                {
+                    local.ID = int.Parse(dataTable.Rows[0]["ID_Local"].ToString());
+                    local.Nome = dataTable.Rows[0]["Nome"].ToString();
+                    
+
+                    return local;
+                }
+                else return null;
+
+            }
+            else return null;
+        }
+
 
         #endregion
     }

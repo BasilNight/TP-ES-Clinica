@@ -198,15 +198,20 @@ namespace ClinicaAppDA
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public List<DateTime> GetAllConsultasDisp(DateTime date)
+        public List<DateTime> GetAllConsultasDisp(DateTime date, int idLocal, int idFisioterapeuta)
         {
             SqlDataReader dataReader;
             List<DateTime> horasTodas = new List<DateTime>();
             List<Consulta> listaConsultas = new List<Consulta>();
-            DataSet ds = new DataSet();
+            List<Utilizador> fisioterapeutas = new List<Utilizador>();
+            
+
+            UtilizadorDA utilizadorMetodos = new UtilizadorDA();
+            
+
             connection = new SqlConnection(connectionString);
             Consulta consulta;
-
+            
             try
             {
                 connection.Open();
@@ -219,9 +224,9 @@ namespace ClinicaAppDA
             if (connection.State.ToString() == "Open")
             {
                 
-                const int lastHour = 19;
+                const int lastHour = 19; // Hora final/hora de encerramento da clinica
 
-                DateTime data = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
+                DateTime data = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0); // Hora inicial da data escolhida.
 
                 while (data.Hour < lastHour)
                 {
@@ -235,12 +240,33 @@ namespace ClinicaAppDA
                 {
                     foreach(Consulta consulta1 in listaConsultas)
                     {
+
                         int result = DateTime.Compare(date1, consulta1.Data);
-                        if (result == 0)
+
+                        if (result == 0 && consulta1.IdLocal == idLocal)
                         {
-                            horasTodas.Remove(date1);
+                            fisioterapeutas = GetUtilizadoresInConsulta(consulta1.ID);
+                            foreach(Utilizador utilizador in fisioterapeutas)
+                            {
+                                if(idFisioterapeuta == utilizador.ID)
+                                {
+                                    horasTodas.Remove(date1);
+                                }
+                            }
+                            //horasTodas.Remove(date1);
                         }
+
+                        /* int result = DateTime.Compare(date1, consulta1.Data); // So isto funciona
+
+                         if (result == 0)
+                         {
+                             horasTodas.Remove(date1);
+                         }
+                        */
+
                     }
+
+                    
                 }
 
                 return horasTodas;
