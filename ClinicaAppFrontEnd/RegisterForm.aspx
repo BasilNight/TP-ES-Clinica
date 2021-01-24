@@ -19,6 +19,8 @@
                        </td>
                        <td>
                            <asp:TextBox ID="TextBox2" runat="server" Width="171px"></asp:TextBox>
+                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox2"
+                            ErrorMessage="Please enter your birthday">*</asp:RequiredFieldValidator>
                        </td>
                    </tr>
                    <tr>
@@ -28,6 +30,8 @@
                        <td>
 
                            <asp:TextBox ID="TextBox3" runat="server" Width="170px"></asp:TextBox>
+                           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox3"
+                            ErrorMessage="Please enter your birthday">*</asp:RequiredFieldValidator>
 
                        </td>
                    </tr>
@@ -38,6 +42,8 @@
                        <td>
 
                            <asp:TextBox ID="TextBox5" runat="server" Width="173px"></asp:TextBox>
+                           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox5"
+                            ErrorMessage="Please enter your birthday">*</asp:RequiredFieldValidator>
 
                        </td>
                    </tr>
@@ -62,6 +68,8 @@
                        <td>
 
                            <asp:TextBox ID="TextBox4" runat="server" Width="174px"></asp:TextBox>
+                           <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextBox4"
+                            ErrorMessage="Please enter your birthday">*</asp:RequiredFieldValidator>
 
                        </td>
                    </tr>

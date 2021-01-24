@@ -243,12 +243,12 @@ namespace ClinicaAppDA
 
                         int result = DateTime.Compare(date1, consulta1.Data);
 
-                        if (result == 0 && consulta1.IdLocal == idLocal)
+                        if (result == 0)
                         {
                             fisioterapeutas = GetUtilizadoresInConsulta(consulta1.ID);
                             foreach(Utilizador utilizador in fisioterapeutas)
                             {
-                                if(idFisioterapeuta == utilizador.ID)
+                                if(idFisioterapeuta == utilizador.ID && idLocal == consulta1.IdLocal)
                                 {
                                     horasTodas.Remove(date1);
                                 }

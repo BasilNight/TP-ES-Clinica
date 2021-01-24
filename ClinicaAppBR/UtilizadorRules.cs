@@ -56,5 +56,18 @@ namespace ClinicaAppBR
             }
             else return null;
         }
+
+        public List<Perfil> GetPerfils()
+        {
+            PerfilDA metodosPerfil = new PerfilDA();
+            List<Perfil> listaPerfis = new List<Perfil>();
+
+            listaPerfis = metodosPerfil.GetPerfis();
+            if (listaPerfis != null)
+            {
+                return listaPerfis;
+            }
+            else return null;
+        }
     }
 }

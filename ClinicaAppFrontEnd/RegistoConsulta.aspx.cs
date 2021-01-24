@@ -16,6 +16,8 @@ namespace ClinicaAppFrontEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label9.Visible = false;
+            Label8.Visible = false;
             UtilizadorRules utilizadorRules = new UtilizadorRules();
             this.utilizadorExistente = new Utilizador();
             string email = Session["email"].ToString();
@@ -58,7 +60,8 @@ namespace ClinicaAppFrontEnd
 
         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Label9.Visible = false;
+            Label8.Visible = false;
             DropDownList1.Items.Clear();
             DropDownList5.Items.Clear();
             UtilizadorRules utilizadorRules = new UtilizadorRules();
@@ -74,6 +77,8 @@ namespace ClinicaAppFrontEnd
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
+            Label9.Visible = false;
+            Label8.Visible = false;
             List<DateTime> listaDatasDisp = new List<DateTime>();
             List<string> listaHorasDisp = new List<string>();
             listaDatasDisp.Clear();
@@ -87,9 +92,9 @@ namespace ClinicaAppFrontEnd
             else
             {
                 ConsultaRules consultaRules = new ConsultaRules();
-                
-                               
-                listaDatasDisp = consultaRules.GetConsultasDisp(Calendar1.SelectedDate);
+
+
+                listaDatasDisp = consultaRules.GetConsultasDisp(Calendar1.SelectedDate, Convert.ToInt32(DropDownList2.SelectedValue), Convert.ToInt32(DropDownList1.SelectedValue));
 
                 foreach(DateTime data in listaDatasDisp)
                 {
@@ -103,7 +108,8 @@ namespace ClinicaAppFrontEnd
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Label9.Visible = false;
+            Label8.Visible = false;
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -129,7 +135,10 @@ namespace ClinicaAppFrontEnd
             novaConsulta.Estado = 1;
 
 
-            consultaRules.MarcaConsulta(novaConsulta, listaUtilizadores);
+            if(consultaRules.MarcaConsulta(novaConsulta, listaUtilizadores) == true)
+            {
+                Label8.Visible = true;
+            }else Label9.Visible = true;
 
         }
     }

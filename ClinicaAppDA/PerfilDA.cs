@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using ClinicaAppBO;
 
 namespace ClinicaAppDA
 {
-    class PerfilDA
+    public class PerfilDA
     {
         #region Atributos
         //Connection String para a nossa base de dados
@@ -14,6 +15,55 @@ namespace ClinicaAppDA
         private SqlCommand command;
         #endregion
 
+        /// <summary>
+        /// Metodo que devolve lista de perfis
+        /// </summary>
+        /// <returns></returns>
+        public List<Perfil> GetPerfis()
+        {
+            SqlDataReader dataReader;
+            connection = new SqlConnection(connectionString);
+            Perfil perfil;
+            List<Perfil> listaPerfil = new List<Perfil>();
+
+            try
+            {
+                connection.Open();
+
+            }
+            catch
+            {
+                //Conexao falhou
+                connection.Close();
+                return null;
+            }
+            if (connection.State.ToString() == "Open")
+            {
+                //Construçao da query
+                SqlCommand cmdins = new SqlCommand();
+                string comando;
+                cmdins.Connection = connection;
+
+                comando = "select * from Perifl;";
+                cmdins.CommandText = comando;
+
+                dataReader = cmdins.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    perfil = new Perfil();
+
+                    perfil.ID = int.Parse(dataReader.GetValue(0).ToString());
+                    perfil.Titulo = dataReader.GetValue(1).ToString();
+                    perfil.Descricao = dataReader.GetValue(2).ToString();
+
+                    listaPerfil.Add(perfil);
+                }
+
+                return listaPerfil;
+            }
+            else return null;
+        }
 
     }
 }

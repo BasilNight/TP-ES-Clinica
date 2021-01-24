@@ -117,6 +117,16 @@
                 </td>
                 </tr>
         </table>
+        <div align="center">
+
+                    <asp:Label ID="Label8" runat="server" ForeColor="#33CC33" Text="Consulta Marcada com Sucesso" Font-Bold="True" Font-Names="Arial" Font-Underline="True"></asp:Label>
+                    
+        </div>
+        <div align="center">
+
+                    <asp:Label ID="Label9" runat="server" ForeColor="Red" Text="Consulta não foi Marcada" Font-Bold="True" Font-Names="Arial" Font-Underline="True"></asp:Label>
+                    
+        </div>
 
         <div align="center" class="auto-style13">
 

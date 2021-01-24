@@ -13,7 +13,15 @@ namespace ClinicaAppFrontEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            UtilizadorRules utilizadorRules = new UtilizadorRules();
+            List<Perfil> listaPerfis = new List<Perfil>();
 
+            listaPerfis = utilizadorRules.GetPerfils();
+
+            DropDownList1.DataSource = listaPerfis;
+            DropDownList1.DataTextField = "Titulo";
+            DropDownList1.DataValueField = "ID";
+            DropDownList1.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
