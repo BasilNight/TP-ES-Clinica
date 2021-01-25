@@ -114,7 +114,7 @@ namespace ClinicaAppFrontEnd
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            //FALTA ADICIONAR CASOS DE FAIL
+            
             UtilizadorRules utilizadorRules = new UtilizadorRules();
             ConsultaRules consultaRules = new ConsultaRules();
             Consulta novaConsulta = new Consulta();
@@ -139,6 +139,11 @@ namespace ClinicaAppFrontEnd
             {
                 Label8.Visible = true;
             }else Label9.Visible = true;
+
+        }
+
+        protected void DropDownList5_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

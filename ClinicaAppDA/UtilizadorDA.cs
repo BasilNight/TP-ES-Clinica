@@ -302,7 +302,7 @@ namespace ClinicaAppDA
             if (connection.State.ToString() == "Open")
             {
                 //Verificar se a pessoa ja existe
-                if (ExisteUtilizador(utilizador.Email) == false)
+                if (ExisteUtilizador(utilizador.Email) == true)
                 {
                     //Construçao da query...             
                     string comando;

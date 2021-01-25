@@ -15,7 +15,7 @@ namespace ClinicaAppBO
         private int estado; //Talvez fazemos ENUM
         private int idLocal;
         private int idTratamento;
-        private List<Utilizador> listaUtilizadores; // Penso que é assim, precisamos de uma forma para ter 2 ou mais utilizadores associados a uma consulta. 
+
 
         public Consulta()
         {
@@ -58,11 +58,6 @@ namespace ClinicaAppBO
             set { idTratamento = value; }
         }
 
-        public List<Utilizador> Utilizadores
-        {
-            get { return listaUtilizadores; }
-            set { listaUtilizadores = value; }
-        }
-
+        
     }
 }

@@ -98,7 +98,7 @@
                         <tr>
                             <td class="auto-style10">
                                 <asp:Label ID="Label7" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha a Hora Disponivel Desejada: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList5" runat="server" Width="169px" CssClass="auto-style9">
+                                <asp:DropDownList ID="DropDownList5" runat="server" Width="169px" CssClass="auto-style9" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged">
                                 </asp:DropDownList>
                                 
 
