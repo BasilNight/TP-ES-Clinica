@@ -92,6 +92,8 @@
                                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="auto-style8" Width="169px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                                 </asp:DropDownList>
 
+                                    <asp:RequiredFieldValidator ID="FisioterapeutaRequired" runat="server" ControlToValidate="DropDownList1" ErrorMessage="Fisioterapeuta is required." ToolTip="Fisioterapeuta is required." >*</asp:RequiredFieldValidator>
+
                             </td>
                         </tr>
                         
@@ -101,6 +103,9 @@
                                 <asp:DropDownList ID="DropDownList5" runat="server" Width="169px" CssClass="auto-style9" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged">
                                 </asp:DropDownList>
                                 
+
+                                    <asp:RequiredFieldValidator ID="HoraRequired" runat="server" ControlToValidate="DropDownList5" ErrorMessage="Hora is required." ToolTip="Hora is required." >*</asp:RequiredFieldValidator>
+
 
                             </td>
                         </tr>

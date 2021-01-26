@@ -212,6 +212,7 @@ namespace ClinicaAppDA
 
                     listaFisioterapeuta.Add(utilizador);
 
+                    utilizador = new Utilizador();
                     
                 }
                 connection.Close();

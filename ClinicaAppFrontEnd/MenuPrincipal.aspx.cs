@@ -16,9 +16,9 @@ namespace ClinicaAppFrontEnd
         protected void Page_Load(object sender, EventArgs e)
         {
             UtilizadorRules utilizadorRules = new UtilizadorRules();
-            Utilizador utilizadorExistente = new Utilizador();
-            string email = Session["email"].ToString();
-            string senha = Session["password"].ToString();
+            this.utilizadorExistente = new Utilizador();
+            string email = Session["email_login"].ToString();
+            string senha = Session["password_login"].ToString();
 
             if (email != null || senha != null)
             {

@@ -85,7 +85,7 @@ namespace ClinicaAppFrontEnd
             listaHorasDisp.Clear();
             DropDownList5.Items.Clear();
             
-            if (Calendar1.SelectedDate.Date < DateTime.Today)
+            if (Calendar1.SelectedDate.Date <= DateTime.Today)
             {
                 Label6.Visible = true;
             }
@@ -134,12 +134,15 @@ namespace ClinicaAppFrontEnd
             novaConsulta.Data = DateTime.Parse(datastring);
             novaConsulta.Estado = 1;
 
-
-            if(consultaRules.MarcaConsulta(novaConsulta, listaUtilizadores) == true)
+            if (Label6.Visible != true && DropDownList5.SelectedValue.Equals(null) != true)
             {
-                Label8.Visible = true;
-            }else Label9.Visible = true;
-
+                if (consultaRules.MarcaConsulta(novaConsulta, listaUtilizadores) == true)
+                {
+                    Label8.Visible = true;
+                }
+                else Label9.Visible = true;
+            }
+            else Label9.Visible = true;
         }
 
         protected void DropDownList5_SelectedIndexChanged(object sender, EventArgs e)

@@ -35,8 +35,8 @@ namespace ClinicaAppFrontEnd
 
             if (utilizadorRules.Login(email, senha) != null)
             {
-                Session["email"] = email;
-                Session["password"] = senha;
+                Session["email_login"] = email;
+                Session["password_login"] = senha;
                 Server.Transfer("MenuPrincipal.aspx");
                 Response.Redirect("MenuPrincipal.aspx");
             }

@@ -8,7 +8,18 @@
     </title>
     <style type="text/css">
         .auto-style1 {
-            height: 42px;
+            height: 57px;
+        }
+        .auto-style2 {
+            width: 209px;
+        }
+        .auto-style3 {
+            height: 48px;
+        }
+        .auto-style4 {
+            height: 350px;
+            width: 254px;
+            margin-right: 14px;
         }
     </style>
 </head>
@@ -16,20 +27,20 @@
     <form id="form1" runat="server">
         <table cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
             <tr>
-                <td>
-                    <table cellpadding="0" style="height:206px; width:201px;">
+                <td class="auto-style2">
+                    <table cellpadding="0" class="auto-style4">
                         <tr>
-                            <td colspan="2" class="auto-style1">
+                            <td align="center" colspan="2" bgcolor="#5D7B9D" class="auto-style1">
 
-                                <asp:Label ID="Label1" runat="server" Text="Menu Principal"></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text="Menu Principal" Font-Bold="True" Font-Size="X-Large" Font-Names="Arial" ForeColor="White"></asp:Label>
 
                             </td>
                         </tr>
 
                         <tr>
-                            <td style="color:black;font-weight:bold;font-size:1.2em;">
+                            <td style="color:black;font-weight:bold;font-size:1.2em;" class="auto-style3">
 
-                                <asp:Label ID="Label2" runat="server" Text="Bem Vindo"></asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text="Bem Vindo" Font-Names="Arial"></asp:Label>
 
                             </td>
                         </tr>
