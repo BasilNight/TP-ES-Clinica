@@ -37,7 +37,7 @@ namespace ClinicaAppFrontEnd
 
             Session["email"] = email;
             Session["password"] = senha;
-            Server.Transfer("RegistoConsulta.aspx");
+            
             Response.Redirect("RegistoConsulta.aspx");
         }
     }

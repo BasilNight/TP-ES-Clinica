@@ -16,6 +16,7 @@ namespace ClinicaAppFrontEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DropDownList2.Items.Clear();
             Label9.Visible = false;
             Label8.Visible = false;
             UtilizadorRules utilizadorRules = new UtilizadorRules();
