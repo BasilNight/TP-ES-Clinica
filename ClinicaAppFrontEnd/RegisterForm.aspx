@@ -81,7 +81,7 @@
                        </td>
                        <td>
 
-                           <asp:DropDownList ID="DropDownList1" runat="server" Width="123px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                           <asp:DropDownList ID="DropDownList1" runat="server" EnableViewState="true" AppendDataBoundItems="true" Width="123px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                            </asp:DropDownList>
 
                        </td>

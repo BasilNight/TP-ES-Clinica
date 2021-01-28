@@ -49,7 +49,7 @@ namespace ClinicaAppFrontEnd
             novoUtilizador.Email = TextBox5.Text;
             novoUtilizador.DataNasc = DateTime.Parse(date.Text);
             novoUtilizador.Nif = int.Parse(TextBox4.Text);
-            novoUtilizador.IdPerfil = 2;
+            novoUtilizador.IdPerfil = int.Parse(DropDownList1.SelectedValue);
 
             if(utilizadorRules.RegistarUtilizador(novoUtilizador) == true)
             {
