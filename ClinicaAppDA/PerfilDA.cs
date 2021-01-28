@@ -44,7 +44,7 @@ namespace ClinicaAppDA
                 string comando;
                 cmdins.Connection = connection;
 
-                comando = "select * from Perifl;";
+                comando = "select * from Perfil;";
                 cmdins.CommandText = comando;
 
                 dataReader = cmdins.ExecuteReader();
