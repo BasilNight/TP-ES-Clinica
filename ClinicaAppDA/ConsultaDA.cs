@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace ClinicaAppDA
 {
-    public class ConsultaDA
+    public class ConsultaDA //Consulta
     {
         #region Atributos
         //Connection String para a nossa base de dados
