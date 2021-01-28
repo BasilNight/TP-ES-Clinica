@@ -136,7 +136,7 @@
         <div align="center" class="auto-style13">
 
             <br />
-            <asp:Button ID="Button1" runat="server" CssClass="auto-style14" Height="34px" Text="Voltar para Menu Principal" Width="168px" />
+            <asp:Button ID="Button1" runat="server" CssClass="auto-style14" Height="34px" Text="Voltar para Menu Principal" Width="168px" OnClick="Button1_Click" />
             <asp:Button ID="Button2" runat="server" CssClass="auto-style15" Height="34px" Text="Confirmar" Width="168px" OnClick="Button2_Click" />
 
         </div>

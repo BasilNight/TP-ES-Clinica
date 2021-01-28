@@ -88,6 +88,7 @@ namespace ClinicaAppFrontEnd
             }
             else
             {
+                Label6.Visible = false;
                 ConsultaRules consultaRules = new ConsultaRules();
 
 
@@ -145,6 +146,11 @@ namespace ClinicaAppFrontEnd
         protected void DropDownList5_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MenuPrincipal.aspx");
         }
     }
 }
