@@ -16,7 +16,7 @@ namespace ClinicaAppFrontEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DropDownList2.Items.Clear();
+            
             Label9.Visible = false;
             Label8.Visible = false;
             UtilizadorRules utilizadorRules = new UtilizadorRules();
@@ -39,40 +39,36 @@ namespace ClinicaAppFrontEnd
 
             List<Tratamento> listaTratamentos = new List<Tratamento>();
             List<Local> listaLocais = new List<Local>();
+            List<Utilizador> listaFisioterapeutas = new List<Utilizador>();
 
+            
             ConsultaRules consultaRules = new ConsultaRules();
             listaLocais = consultaRules.GetLocais();
             listaTratamentos = consultaRules.GetTratamentos();
 
+            if (!Page.IsPostBack)
+            {
+                DropDownList2.DataSource = listaLocais;
+                DropDownList2.DataTextField = "Nome";
+                DropDownList2.DataValueField = "ID";
+                DropDownList2.DataBind();
 
-            DropDownList2.DataSource = listaLocais;
-            DropDownList2.DataTextField = "Nome";
-            DropDownList2.DataValueField = "ID";
-            DropDownList2.DataBind();
+                DropDownList4.DataSource = listaTratamentos;
+                DropDownList4.DataTextField = "Descricao";
+                DropDownList4.DataValueField = "ID";
+                DropDownList4.DataBind();
 
-            DropDownList4.DataSource = listaTratamentos;
-            DropDownList4.DataTextField = "Descricao";
-            DropDownList4.DataValueField = "ID";
-            DropDownList4.DataBind();
-
-
+                listaFisioterapeutas = utilizadorRules.GetFisioterapeutas();
+                DropDownList1.DataSource = listaFisioterapeutas;
+                DropDownList1.DataTextField = "Username";
+                DropDownList1.DataValueField = "ID";
+                DropDownList1.DataBind();
+            }
         }
         
 
         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Label9.Visible = false;
-            Label8.Visible = false;
-            DropDownList1.Items.Clear();
-            DropDownList5.Items.Clear();
-            UtilizadorRules utilizadorRules = new UtilizadorRules();
-            List<Utilizador> listaFisioterapeutas = new List<Utilizador>();
-
-            listaFisioterapeutas = utilizadorRules.GetFisioterapeutas();
-            DropDownList1.DataSource = listaFisioterapeutas;
-            DropDownList1.DataTextField = "Username";
-            DropDownList1.DataValueField = "ID";
-            DropDownList1.DataBind();
 
         }
 

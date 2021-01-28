@@ -77,7 +77,7 @@
                             <td class="auto-style7">
 
                                 <asp:Label ID="Label3" runat="server" Font-Names="Arial" Font-Size="Medium" Text="Escolha o Local Disponivel Desejado: "></asp:Label>
-                                <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="true" EnableViewState="true" AppendDataBoundItems="true" Width="169px" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" style="height: 22px">
+                                <asp:DropDownList ID="DropDownList2" runat="server" Width="169px" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" style="height: 22px">
                                 </asp:DropDownList>
                                 
 
