@@ -88,6 +88,7 @@ namespace ClinicaAppFrontEnd
             }
             else
             {
+                Label6.Visible = false;
                 ConsultaRules consultaRules = new ConsultaRules();
 
 
