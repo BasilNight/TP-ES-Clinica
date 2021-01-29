@@ -127,6 +127,24 @@ namespace xUnitTestProjectClinica
 
         }
 
+        [Theory]
+        [InlineData("28-01-2021 00:00:00", 1, 2)]
+        public void GetAllConsultasDisp(string data, int idLocal, int idFisioterapeuta)
+        {
+
+            //Arrange
+            ConsultaDA consultas = new ConsultaDA();
+            List<DateTime> datas = new List<DateTime>();
+
+            //Act
+            datas = consultas.GetAllConsultasDisp(DateTime.Parse(data), idLocal, idFisioterapeuta);
+
+            //Assert
+            Assert.NotNull(datas);
+
+        }
+
+
         //Nao sei porque nao funciona as listas são iguais
         /*
         [Theory]
@@ -156,6 +174,6 @@ namespace xUnitTestProjectClinica
         }
         */
         #endregion
-        
+
     }
 }

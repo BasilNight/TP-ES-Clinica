@@ -29,7 +29,7 @@
                        </td>
                        <td>
 
-                           <asp:TextBox ID="TextBox3" runat="server" Width="170px"></asp:TextBox>
+                           <asp:TextBox ID="TextBox3" runat="server" TextMode="Password" Width="170px"></asp:TextBox>
                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox3"
                             ErrorMessage="Please enter your birthday">*</asp:RequiredFieldValidator>
 
@@ -89,7 +89,7 @@
                    <tr>
                         <td align="center" style="width: 264px">
 
-                            <asp:Button ID="Button1" runat="server" Text="Voltar para Menu" OnClick="Button1_Click1" />
+                            <asp:Button ID="Button1" runat="server" CausesValidation="False" Text="Voltar para Menu" OnClick="Button1_Click1" />
 
                         </td>
                        <td align="center">
