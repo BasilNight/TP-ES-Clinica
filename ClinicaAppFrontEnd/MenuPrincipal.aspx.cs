@@ -40,5 +40,10 @@ namespace ClinicaAppFrontEnd
             
             Response.Redirect("RegistoConsulta.aspx");
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
     }
 }

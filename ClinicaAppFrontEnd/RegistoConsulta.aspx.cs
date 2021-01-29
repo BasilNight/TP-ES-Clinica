@@ -111,13 +111,13 @@ namespace ClinicaAppFrontEnd
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            
+
             UtilizadorRules utilizadorRules = new UtilizadorRules();
             ConsultaRules consultaRules = new ConsultaRules();
             Consulta novaConsulta = new Consulta();
             Utilizador fisioterapeuta = new Utilizador();
             fisioterapeuta = utilizadorRules.GetUtilizador(Convert.ToInt32(DropDownList1.SelectedValue));
-            
+
             List<Utilizador> listaUtilizadores = new List<Utilizador>();
             listaUtilizadores.Add(this.utilizadorExistente);
             listaUtilizadores.Add(fisioterapeuta);
@@ -136,15 +136,23 @@ namespace ClinicaAppFrontEnd
                 if (consultaRules.MarcaConsulta(novaConsulta, listaUtilizadores) == true)
                 {
                     Label8.Visible = true;
+                    Response.Redirect("MetodoPagamento.aspx");
                 }
                 else Label9.Visible = true;
             }
             else Label9.Visible = true;
+
+
         }
 
         protected void DropDownList5_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MenuPrincipal.aspx");
         }
     }
 }

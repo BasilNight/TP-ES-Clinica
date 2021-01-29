@@ -66,6 +66,13 @@
 
                             </td>
                         </tr>
+                        <tr>
+                            <td align="center">
+
+                                <asp:Button ID="Button4" runat="server" Height="46px" Width="164px" Text="Log Out" OnClick="Button4_Click" />
+
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
